@@ -2,32 +2,49 @@ import java.util.Scanner;
 
 public class Fourth
 {
-    public static void task4()
-    {
+    int max, min;
+
+    private final int length;
+    private final int[][] matrix;
+
+
+    public Fourth() {
         Scanner scanner = new Scanner(System.in);// Об'єкт для зчитування вводу користувача
 
         System.out.print("Введіть розмірність квадратної матриці: ");
-        int Lenght = scanner.nextInt();// Зчитування введеної розмірності квадратної матриці користувачем
-        int[][] matrix = new int[Lenght][Lenght];// Створення двовимірного масиву
+        waitNextInt(scanner);
+        length = scanner.nextInt();// Зчитування кількості рядків введених користувачем
+
+        matrix = new int[length][length];// Створення двовимірного масиву
 
         System.out.println("Введіть елементи матриці:");
-        for (int i = 0; i < Lenght; i++)// Цикл для введення значень матриці користувачем
+        for (int i = 0; i < length; i++)// Цикл для послідовного заповнення елементів матриці
         {
-            for (int j = 0; j < Lenght; j++)
-            {
+            for (int j = 0; j < length; j++) {
                 System.out.print("Елемент [" + (i + 1) + "][" + (j + 1) + "]: ");
-                matrix[i][j] = scanner.nextInt();// Зчитуванння введених значень користувачем
+                waitNextInt(scanner);
+                matrix[i][j] = scanner.nextInt();// Зчитування введених значень користувачем
             }
         }
+    }
 
-        int max = Integer.MIN_VALUE;//Змінна для зберігання максимального значення серед елементів нижче побічної діагоналі
-        int min = Integer.MAX_VALUE;//Змінна для зберігання мінімального значення серед елементів вище головної діагоналі
+    private void waitNextInt(Scanner scanner) {
+        while (!scanner.hasNextInt()) {
+            scanner.nextLine();
+            System.out.println("спробуй ще");
+            System.out.print("Введіть розмірність масиву: ");
+        }
+    }
 
-        for (int i = 0; i < Lenght; i++)// Цикл для перебору рядків матриці
+    private void calculateMaxMin(){
+        max = Integer.MIN_VALUE;//Змінна для зберігання максимального значення серед елементів нижче побічної діагоналі
+        min = Integer.MAX_VALUE;//Змінна для зберігання мінімального значення серед елементів вище головної діагоналі
+
+        for (int i = 0; i < length; i++)// Цикл для перебору рядків матриці
         {
-            for (int j = 0; j < Lenght; j++)// Внутрішній цикл для перебору стовпців матриці
+            for (int j = 0; j < length; j++)// Внутрішній цикл для перебору стовпців матриці
             {
-                if (i + j > Lenght - 1 && matrix[i][j] > max)// Якщо поточний елемент знаходиться нижче побічної діагоналі і більший за максимальний
+                if (i + j > length - 1 && matrix[i][j] > max)// Якщо поточний елемент знаходиться нижче побічної діагоналі і більший за максимальний
                 {
                     max = matrix[i][j];// Присвоєння максимального значення
                 }
@@ -38,17 +55,24 @@ public class Fourth
             }
         }
 
+    }
+
+    private void displayResult(){
         System.out.println("Результат:");
-        for (int i = 0; i < Lenght  ; i++)// Цикл для виведення отриманної матриці
+        for (int i = 0; i < length  ; i++)// Цикл для виведення отриманної матриці
         {
-            for (int j = 0; j < Lenght; j++) {
+            for (int j = 0; j < length; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
 
-            System.out.println("Максимальний серед елементів нижче побічної діагоналі: " + max);
-            System.out.println("Мінімальний серед елементів вище головної діагоналі: " + min);
+        System.out.println("Максимальний серед елементів нижче побічної діагоналі: " + max);
+        System.out.println("Мінімальний серед елементів вище головної діагоналі: " + min);
+    }
 
+    public void runTask(){
+        calculateMaxMin();
+        displayResult();
     }
 }
