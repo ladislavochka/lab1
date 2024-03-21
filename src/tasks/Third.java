@@ -1,14 +1,14 @@
+package tasks;
+
 import java.util.Scanner;
 
-public class Third
-{
+public class Third {
     int rows;
     int columns;
-    private int[][] matrix;
+    private final int[][] matrix;
 
 
-    public Third()
-    {
+    public Third() {
         Scanner scanner = new Scanner(System.in);// Об'єкт для зчитування вводу користувача
 
         System.out.print("Введіть кількість рядків матриці: ");
@@ -24,15 +24,15 @@ public class Third
         System.out.println("Введіть елементи матриці:");
         for (int i = 0; i < rows; i++)// Цикл для послідовного заповнення елементів матриці
         {
-            for (int j = 0; j < columns; j++)
-            {
+            for (int j = 0; j < columns; j++) {
                 System.out.print("Елемент [" + (i + 1) + "][" + (j + 1) + "]: ");
                 waitNextInt(scanner);
                 matrix[i][j] = scanner.nextInt();// Зчитування введених значень користувачем
             }
         }
     }
-    private void waitNextInt(Scanner scanner){
+
+    private void waitNextInt(Scanner scanner) {
         while (!scanner.hasNextInt()) {
             scanner.nextLine();
             System.out.println("спробуй ще");
@@ -58,8 +58,7 @@ public class Third
                 {
                     matrix[i][j] = 0;// Присвоювання нульового значення елементу
                 }
-            }
-            else// Якщо всі елементи невід'ємні, присвоюємо 1
+            } else// Якщо всі елементи невід'ємні, присвоюємо 1
             {
                 for (int i = 0; i < rows; i++)// Цикл для перебору елементів поточного стовпця
                 {
@@ -69,19 +68,18 @@ public class Third
         }
     }
 
-    private void displayMatrix(){
+    private void displayMatrix() {
         System.out.println("Результат:");
         for (int i = 0; i < rows; i++)// Цикл для виведення отриманної матриці
         {
-            for (int j = 0; j < columns; j++)
-            {
+            for (int j = 0; j < columns; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
     }
 
-    public void RunTask(){
+    public void RunTask() {
         processMatrix();
         displayMatrix();
     }

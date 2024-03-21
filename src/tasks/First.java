@@ -1,3 +1,5 @@
+package tasks;
+
 import java.util.Scanner;
 
 public class First {
@@ -30,7 +32,7 @@ public class First {
         }
     }
 
-    private void printEvenNumbers(){
+    private void printEvenNumbers() {
         for (int i = 0; i < length; i++)// Цикл для перебирання всіх елементів у порядку зростання індексів
         {
             if (array[i] != 0 && array[i] % 2 == 0)// Перевірка чи елемент не дорівнює нулю та чи є воно парним
@@ -40,7 +42,7 @@ public class First {
         }
     }
 
-    private void printOddNumbers(){
+    private void printOddNumbers() {
         for (int i = length - 1; i >= 0; i--)// Цикл для перебиранняя непарних чисел, окрів нулю, в порядку зменьшення їх індексу
         {
             if (array[i] != 0 && array[i] % 2 != 0)// Перевірка чи не дорівнює елемент нулю та чи є воно непарним

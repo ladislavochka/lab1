@@ -1,3 +1,5 @@
+package menu;
+
 /**
  * Represents an entry in a menu, providing a title and functionality when invoked.
  * This is an abstract class and should be extended to define specific menu actions.
@@ -5,7 +7,7 @@
  * <h2>Usage Example:</h2>
  * To create a new menu entry for exiting the menu:
  * <pre>{@code
- * new MenuEntry("Exit") {
+ * new menu.MenuEntry("Exit") {
  *     @Override
  *     public void run() {
  *         // Implement functionality

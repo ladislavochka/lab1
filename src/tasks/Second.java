@@ -1,6 +1,8 @@
+package tasks;
+
 import java.util.Scanner;
-public class Second
-{
+
+public class Second {
     private int length;
     private int[] array;
 
@@ -30,7 +32,7 @@ public class Second
         }
     }
 
-    public void runTask(){
+    public void runTask() {
         int wrongIndex = -1;// Змінна для індексу першого елемента, який порушив послідовність
 
         for (int i = 0; i < length - 1; i++)//  Цикл для перебирання елементів масиву
@@ -45,8 +47,7 @@ public class Second
         if (wrongIndex == -1) // Якщо цикл не порушився , що виводимо нуль
         {
             System.out.println("0");
-        }
-        else // В іншому випадку виводимо значення порушного елемента та його індекс
+        } else // В іншому випадку виводимо значення порушного елемента та його індекс
         {
             System.out.println("Перший порушений елемент: " + array[wrongIndex] + ", порядковий номер: " + (wrongIndex + 1));
         }

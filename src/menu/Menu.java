@@ -1,10 +1,14 @@
+package menu;
+
+import menu.MenuEntry;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * Represents a menu that allows users to select from a list of menu entries.
- * Menu entries can be added, removed, and executed.
+ * menu.Menu entries can be added, removed, and executed.
  */
 public class Menu {
     private final List<MenuEntry> entries = new ArrayList<MenuEntry>(); // List of menu entries
@@ -120,17 +124,20 @@ public class Menu {
     public void run() {
         while (!isExit) {
             this.printMenu();
-            System.out.printf("Select a menu option [%d-%d]: ", 1, entries.size());
+            System.out.printf("Обирите одну з опцій меню[%d-%d]: ", 1, entries.size());
 
             // check user's input
             int choice = getUserChoice();
             if (choice == -1){
-                System.out.println("Invalid input. Please try again.");
+                System.out.print("\n\n\n");
+                System.out.println("Некоректно введені данні. Спробуйте ще...");
                 System.out.print("\n\n\n");
                 continue;
             }
 
             MenuEntry entry = entries.get(choice);
+
+            System.out.print("\n\n\n");
             entry.run();
             System.out.print("\n\n\n");
         }
