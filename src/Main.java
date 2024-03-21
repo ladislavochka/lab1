@@ -1,40 +1,65 @@
-import java.util.Arrays;
+import menu.Menu;
+import menu.MenuEntry;
+import tasks.First;
+import tasks.Fourth;
+import tasks.Second;
+import tasks.Third;
+
+import java.util.ArrayList;
 import java.util.Scanner;
-public class Main
-{
-    public static void main(String[] args)
-    {
-        Scanner scanner = new Scanner(System.in);// Об'єкт для зчитування вводу користувача
 
-        System.out.print("Введіть розмірність масиву: ");
-        int lenght = scanner.nextInt();// Зчитування введеної розмірності масиву
+public class Main {
 
-        int[] array = new int[lenght];// Створєння одновимірного масиву
+    public static void main(String[] args) {
+        ArrayList<MenuEntry> entries = getTasks();
 
-        for (int i = 0; i < lenght; i++)// Цикл для заповнення значеннями масиву користувачем
-        {
-            System.out.print("Введіть значення" + (i + 1) + "-го елемента:");
-            array[i] = scanner.nextInt();
-        }
+        Menu menu = new Menu(entries, new Scanner(System.in));
 
-        System.out.println(" ");// Порожній рядок для розділення парних та непарних чисел
-
-        for (int i = 0; i < lenght; i++)// Цикл для перебирання всіх елементів у порядку зростання індексів
-        {
-            if (array[i] !=0 && array[i] % 2 == 0)// Перевірка чи елемент не дорівнює нулю та чи є воно парним
-            {
-                System.out.println("Парне число:" + array[i] + "(індекс" + (i + 1) +")");// Виведення парних чисел
+        menu.push(new MenuEntry("Вийти") {
+            @Override
+            public void run() {
+                menu.setExit(true);
             }
-        }
+        });
 
-        System.out.println(" ");// Порожній рядок для розділення парних та непарних чисел
+        menu.run();
+    }
 
-        for (int i = lenght - 1; i >= 0; i--)// Цикл для перебиранняя непарних чисел, окрів нулю, в порядку зменьшення їх індексу
-        {
-            if (array[i] !=0 && array[i] % 2 != 0)// Перевірка чи не дорівнює елемент нулю та чи є воно непарним
-            {
-                System.out.println("Непарне число:" + array[i] + "(індекс" + (i + 1) +")");// Виведення непарних чисел
+    private static ArrayList<MenuEntry> getTasks() {
+        ArrayList<MenuEntry> entries = new ArrayList<MenuEntry>();
+
+        entries.add(new MenuEntry("Перше завдання") {
+            @Override
+            public void run() {
+                First first = new First();
+                first.runTask();
             }
-        }
+        });
+
+        entries.add(new MenuEntry("Друге завдання") {
+            @Override
+            public void run() {
+                Second second = new Second();
+                second.runTask();
+            }
+        });
+
+        entries.add(new MenuEntry("Третє завдання") {
+            @Override
+            public void run() {
+                Third third = new Third();
+                third.RunTask();
+            }
+        });
+
+        entries.add(new MenuEntry("Четверте завдання") {
+            @Override
+            public void run() {
+                Fourth fourth = new Fourth();
+                fourth.runTask();
+            }
+        });
+
+        return entries;
     }
 }

@@ -1,29 +1,46 @@
+package tasks;
+
 import java.util.Scanner;
 
-public class Third
-{
-    public static void task3()
-    {
+public class Third {
+    int rows;
+    int columns;
+    private final int[][] matrix;
+
+
+    public Third() {
         Scanner scanner = new Scanner(System.in);// Об'єкт для зчитування вводу користувача
 
         System.out.print("Введіть кількість рядків матриці: ");
-        int rows = scanner.nextInt();// Зчитування кількості рядків введених користувачем
+        waitNextInt(scanner);
+        rows = scanner.nextInt();// Зчитування кількості рядків введених користувачем
 
         System.out.print("Введіть кількість стовпців матриці: ");
-        int columns = scanner.nextInt();// Зчитування кількості стовпців введених користувачем
+        waitNextInt(scanner);
+        columns = scanner.nextInt();// Зчитування кількості стовпців введених користувачем
 
-        int[][] matrix = new int[rows][columns];// Створення двовимірного масиву
+        matrix = new int[rows][columns];// Створення двовимірного масиву
 
         System.out.println("Введіть елементи матриці:");
         for (int i = 0; i < rows; i++)// Цикл для послідовного заповнення елементів матриці
         {
-            for (int j = 0; j < columns; j++)
-            {
+            for (int j = 0; j < columns; j++) {
                 System.out.print("Елемент [" + (i + 1) + "][" + (j + 1) + "]: ");
+                waitNextInt(scanner);
                 matrix[i][j] = scanner.nextInt();// Зчитування введених значень користувачем
             }
         }
+    }
 
+    private void waitNextInt(Scanner scanner) {
+        while (!scanner.hasNextInt()) {
+            scanner.nextLine();
+            System.out.println("спробуй ще");
+            System.out.print("Введіть розмірність масиву: ");
+        }
+    }
+
+    private void processMatrix() {
         for (int j = 0; j < columns; j++)// Цикл для передору стовпців матриці
         {
             boolean allNegative = true;
@@ -41,8 +58,7 @@ public class Third
                 {
                     matrix[i][j] = 0;// Присвоювання нульового значення елементу
                 }
-            }
-            else// Якщо всі елементи невід'ємні, присвоюємо 1
+            } else// Якщо всі елементи невід'ємні, присвоюємо 1
             {
                 for (int i = 0; i < rows; i++)// Цикл для перебору елементів поточного стовпця
                 {
@@ -50,15 +66,21 @@ public class Third
                 }
             }
         }
+    }
 
+    private void displayMatrix() {
         System.out.println("Результат:");
         for (int i = 0; i < rows; i++)// Цикл для виведення отриманної матриці
         {
-            for (int j = 0; j < columns; j++)
-            {
+            for (int j = 0; j < columns; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
+    }
+
+    public void RunTask() {
+        processMatrix();
+        displayMatrix();
     }
 }
